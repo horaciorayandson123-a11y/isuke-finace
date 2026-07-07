@@ -1,0 +1,365 @@
+/* Reset & Variáveis Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace, system-ui;
+}
+
+body {
+    background-color: #010409;
+    color: #c9d1d9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.highlight {
+    color: #38bdf8;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+/* Header fixo no topo */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(13, 17, 23, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #21262d;
+    z-index: 100;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.2rem 2rem;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.cursor {
+    animation: blink 1s infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ==========================================
+   TELA 1: AUTENTICAÇÃO (LOGIN / REGISTRO)
+   ========================================== */
+.auth-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    margin-top: 60px; /* Descola do header */
+}
+
+.auth-box {
+    background-color: #0d1117;
+    border: 1px solid #21262d;
+    padding: 2.5rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.auth-box h2 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #21262d;
+    color: #8b949e;
+    padding: 0.6rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    color: #ffffff;
+}
+
+.tab-btn.active {
+    color: #38bdf8;
+    border-color: #38bdf8;
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+}
+
+.auth-box input {
+    width: 100%;
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    color: white;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.2rem;
+    border-radius: 6px;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.auth-box input:focus {
+    border-color: #38bdf8;
+}
+
+/* ==========================================
+   TELA 2: DASHBOARD PRINCIPAL
+   ========================================== */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Lado esquerdo menor, histórico maior */
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    margin: 80px auto 0; /* Margem superior para não sumir atrás do header */
+    padding: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .dashboard-container {
+        grid-template-columns: 1fr; /* Vira uma coluna só no celular */
+    }
+}
+
+.panel {
+    background-color: #0d1117;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.panel:hover {
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.05);
+}
+
+.panel h2 {
+    font-size: 1.3rem;
+    color: #ffffff;
+    margin-bottom: 1.8rem;
+    border-bottom: 1px solid #21262d;
+    padding-bottom: 0.6rem;
+}
+
+/* Formulário de Transações */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    color: #8b949e;
+}
+
+.input-group input, .input-group select {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    color: #ffffff;
+    padding: 0.7rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus, .input-group select:focus {
+    border-color: #38bdf8;
+}
+
+/* Botões Globais */
+.btn-submit {
+    width: 100%;
+    background-color: #38bdf8;
+    color: #010409;
+    border: none;
+    padding: 0.9rem;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-submit:hover {
+    background-color: #0ea5e9;
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================
+   ARCO DE AJUSTES: HISTÓRICO / TABELA (LINDA)
+   ========================================== */
+.table-wrapper {
+    overflow-x: auto; /* Permite rolar para os lados se a tela for pequena */
+    border: 1px solid #21262d;
+    border-radius: 6px;
+    background-color: #161b22;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 1rem 1.2rem; /* Mais espaçamento interno nas células */
+    font-size: 0.95rem;
+}
+
+th {
+    color: #ffffff;
+    background-color: #12161f; /* Fundo do cabeçalho da tabela ligeiramente diferente */
+    font-weight: bold;
+    border-bottom: 2px solid #21262d;
+}
+
+td {
+    border-bottom: 1px solid #21262d;
+    color: #c9d1d9;
+}
+
+/* Efeito zebrado sutil nas linhas da tabela */
+tr:nth-child(even) td {
+    background-color: rgba(255, 255, 255, 0.01);
+}
+
+tr:hover td {
+    background-color: rgba(56, 189, 248, 0.03); /* Linha acende de leve no mouse hover */
+}
+
+/* Cores das transações com brilho sutil */
+.txt-receita {
+    color: #23c55e;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(35, 197, 94, 0.2);
+}
+
+.txt-despesa {
+    color: #f84f31;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(248, 79, 49, 0.2);
+}
+
+/* Utilitários */
+.hidden {
+    display: none !important;
+}
+
+.feedback-msg {
+    margin-top: 1.2rem;
+    font-size: 0.9rem;
+    text-align: center;
+    min-height: 20px;
+}
+/* Ajustes para a nova coluna do gráfico */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.chart-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 220px; /* Garante uma altura fixa perfeita pro gráfico */
+    margin: 0 auto;
+}
+/* Alinhamento do Título com o Botão de Exportar */
+.panel-header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.8rem;
+    border-bottom: 1px solid #21262d;
+    padding-bottom: 0.6rem;
+}
+
+/* Remove a borda inferior antiga do H2 já que a caixinha acima faz isso */
+.list-panel h2 {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Botão de Exportar Estilo Ciber/Verde */
+.btn-export {
+    background-color: transparent;
+    border: 1px solid #23c55e;
+    color: #23c55e;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-export:hover {
+    background-color: #23c55e;
+    color: #010409;
+    box-shadow: 0 0 10px rgba(35, 197, 94, 0.4);
+}
+/* Botão de Logout no Header */
+.user-status {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-logout {
+    background-color: transparent;
+    border: 1px solid #f84f31;
+    color: #f84f31;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: #f84f31;
+    color: #010409;
+    box-shadow: 0 0 10px rgba(248, 79, 49, 0.4);
+}
